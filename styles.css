@@ -1,0 +1,69 @@
+/* ------------------------ styles.css ------------------------ */
+/* Guarda este bloque como styles.css */
+
+
+:root{
+--bg:#0f0f10;
+--card:#1c1c1e;
+--muted:#9aa0a6;
+--accent:#bcbec0; /* plateado */
+--glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:linear-gradient(180deg,var(--bg),#0b0b0c);color:#fff}
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;background:linear-gradient(90deg,#0b0b0c, #161616);border-bottom:1px solid rgba(255,255,255,0.03)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(135deg,#2b2b2b,#0d0d0d);display:flex;align-items:center;justify-content:center;font-size:26px}
+.brand h1{margin:0;font-size:18px}
+.brand .tag{margin:0;font-size:12px;color:var(--muted)}
+.top-actions .whatsapp-btn{background:transparent;border:1px solid var(--accent);padding:8px 12px;border-radius:8px;color:var(--accent);text-decoration:none}
+
+
+.carousel-wrap{position:relative;padding:18px 12px}
+.carousel{display:flex;gap:12px;overflow:hidden}
+.slide{display:flex;gap:12px;min-width:100%;transition:transform .5s ease}
+.slide .img{flex:1;border-radius:10px;min-height:140px;background:var(--glass);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.slide .img img{width:100%;height:100%;object-fit:cover}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:0;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer}
+.carousel-btn.prev{left:8px}
+.carousel-btn.next{right:8px}
+
+
+.container{padding:18px 24px}
+.filters{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.filters input, .filters select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:#0b0b0c;color:#fff}
+
+
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:linear-gradient(180deg,var(--card),#121212);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:8px}
+.card .thumb{height:160px;border-radius:8px;overflow:hidden;background:var(--glass);display:flex;align-items:center;justify-content:center}
+.card .thumb img{width:100%;height:100%;object-fit:cover}
+.card h4{margin:6px 0 0 0}
+.features{font-size:13px;color:var(--muted)}
+.price{margin-top:auto;font-weight:700}
+.card .actions{display:flex;gap:8px}
+.btn{padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
+.btn.primary{background:linear-gradient(90deg,#4a4a4a,#2b2b2b);border:1px solid var(--accent);color:var(--accent)}
+
+
+.cart-float{position:fixed;right:20px;bottom:20px;z-index:1200}
+.cart-toggle{background:linear-gradient(180deg,#2c2c2c,#1b1b1b);border-radius:999px;padding:12px 16px;border:0;color:#fff}
+.cart-panel{width:320px;background:linear-gradient(180deg,#111111,#0b0b0b);padding:12px;border-radius:10px;margin-top:10px;border:1px solid rgba(255,255,255,0.03)}
+.cart-panel.hidden{display:none}
+.cart-items-row{display:flex;gap:8px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.03);padding:8px 0}
+.cart-items-row img{width:64px;height:48px;object-fit:cover;border-radius:6px}
+.cart-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:1300}
+.modal.hidden{display:none}
+.modal-content{width:min(900px,96%);background:linear-gradient(180deg,#0e0e0e,#0b0b0b);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+.modal .close{position:absolute;right:18px;top:18px;background:transparent;border:0;color:#fff;font-size:20px}
+
+
+.site-footer{text-align:center;padding:18px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
+
+
+@media(max-width:900px){
+.slide{min-width:100%}
+}

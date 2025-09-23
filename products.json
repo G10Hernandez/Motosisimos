@@ -4,7 +4,7 @@
 "category": "Motocicletas",
 "name": "Raptor 500",
 "price": 12999.99,
-"images": ["images/moto1.jpg","images/moto1-2.jpg"],
+"images": ["img/vento1.jpg"],
 "features": ["Motor 500cc","ABS","Tanque 15L"]
 },
 {
@@ -12,7 +12,7 @@
 "category": "Motocicletas",
 "name": "Street X200",
 "price": 8999.00,
-"images": ["images/moto2.jpg"],
+"images": ["img/zontes1.jpg"],
 "features": ["200cc","Iluminación LED","Económica"]
 },
 {
@@ -20,7 +20,7 @@
 "category": "Refacciones",
 "name": "Filtro de aire KX",
 "price": 29.99,
-"images": ["images/filtro1.jpg"],
+"images": ["img/refacciones1.jpg"],
 "features": ["Compatible con modelos 2018-2024","Fácil instalación"]
 },
 {
@@ -28,7 +28,7 @@
 "category": "Refacciones",
 "name": "Juego de pastillas",
 "price": 49.99,
-"images": ["images/pastillas.jpg"],
+"images": ["img/accesorios1.jpg"],
 "features": ["Alta fricción","Durabilidad 40k km"]
 }
 ]

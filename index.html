@@ -1,55 +1,58 @@
-<!DOCTYPE html>
+<html lang="es">
+<header class="site-header">
+<div class="brand">
+<div class="logo">🏍️</div>
+<div>
+<h1>Tienda Motos & Refacciones</h1>
+<p class="tag">Gris • Negro • Plateado</p>
+</div>
+</div>
+<div class="actions">
+<button id="whatsappQuick" class="btn-silver">Enviar WhatsApp</button>
+</div>
+</header>
+
+
+<!-- CARRUSEL -->
+<section class="carousel-wrap">
+<button class="carousel-btn prev" aria-label="Anterior">‹</button>
+<div class="carousel-viewport">
+<div class="carousel" id="carousel"></div>
+</div>
+<button class="carousel-btn next" aria-label="Siguiente">›</button>
+</section>
+
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="container">
+<section class="controls">
+<input id="search" placeholder="Buscar modelo o refacción..." />
+<select id="categoryFilter"><option value="all">Todas</option></select>
+</section>
+
+
+<section id="productGrid" class="product-grid" aria-live="polite"></section>
 </main>
 
 
-<!-- Carrito flotante -->
-<div id="cartFloat" class="cart-float">
+<!-- CARRITO FLOTANTE -->
+<div class="cart-float" id="cartFloat">
 <button id="openCart" class="cart-toggle">🛒 <span id="cartCount">0</span></button>
-<div id="cartPanel" class="cart-panel hidden">
+<aside id="cartPanel" class="cart-panel hidden" aria-hidden="true">
+<header class="cart-header">
 <h3>Carrito</h3>
-<div id="cartItems"></div>
-<div class="cart-footer">
-<div>Total: $<span id="cartTotal">0.00</span></div>
-<button id="checkoutBtn">Pagar (WhatsApp)</button>
+<button id="clearCart" class="btn-clear">Limpiar</button>
+</header>
+<div id="cartItems" class="cart-items"></div>
+<div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
+<div class="cart-actions">
+<button id="checkoutBtn" class="btn-silver">Enviar pedido por WhatsApp</button>
 </div>
-</div>
-</div>
-
-
-<!-- Modal detalle producto -->
-<div id="modal" class="modal hidden">
-<div class="modal-content">
-<button class="close" id="closeModal">✕</button>
-<div id="modalBody"></div>
-</div>
+</aside>
 </div>
 
 
-<footer class="site-footer">
-<p>© 2025 Tienda Motos & Refacciones — Gris • Negro • Plateado</p>
-</footer>
+<footer class="site-footer">© 2025 Tienda Motos & Refacciones</footer>
 
-
-<!-- products.json (copiar como archivo separado products.json) -->
-<!--
-[
-{
-"id": "moto-001",
-"category": "Motocicletas",
-"name": "Raptor 500",
-"price": 12999.99,
-"images": ["images/moto1.jpg","images/moto1-2.jpg"],
-"features": ["Motor 500cc","ABS","Tanque 15L"]
-},
-{
-"id": "refa-001",
-"category": "Refacciones",
-"name": "Filtro de aire KX",
-"price": 29.99,
-"images": ["images/filtro1.jpg"],
-"features": ["Compatible con modelos 2018-2024","Fácil instalación"]
-}
-]
--->
 </body>
 </html>

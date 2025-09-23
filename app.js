@@ -1,48 +1,67 @@
-/* ------------------------ app.js ------------------------ */
-function checkoutWhats(){
-const ids = Object.keys(state.cart)
-if(ids.length===0) return alert('El carrito está vacío')
-sendWhatsappMessage(ids)
+/* ---------------------- app.js ---------------------- */
+// --- WHATSAPP: generar mensaje y abrir chat ---
+function checkoutWhatsApp(){
+const lines = []
+let total = 0
+Object.values(state.cart).forEach(ci => {
+lines.push(`${ci.qty} x ${ci.product.name} - $${fmt(ci.product.price)} = $${fmt(ci.product.price*ci.qty)}`)
+total += ci.product.price * ci.qty
+})
+if(lines.length===0){ alert('El carrito está vacío'); return }
+const msg = `Hola, deseo realizar el siguiente pedido:%0A%0A${encodeURIComponent(lines.join('%0A'))}%0A%0ATotal: $${fmt(total)}`
+const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`
+window.open(url,'_blank')
 }
 
 
-// Inicialización UI
-function initUI(){
-document.addEventListener('click', onDocClick)
+// --- eventos UI delegados ---
+document.addEventListener('click', e=>{
+const el = e.target
+const action = el.dataset.action
+const id = el.dataset.id
+if(!action) return
+if(action==='add') addToCart(id,1)
+if(action==='remove') removeFromCart(id)
+if(action==='inc') setQty(id, (state.cart[id]?.qty||0)+1)
+if(action==='dec') setQty(id, (state.cart[id]?.qty||1)-1)
+})
+
+
+// abrir/ocultar carrito
 document.getElementById('openCart').addEventListener('click', ()=>{
-document.getElementById('cartPanel').classList.toggle('hidden')
+const panel = document.getElementById('cartPanel')
+panel.classList.toggle('hidden')
+const hidden = panel.classList.contains('hidden')
+panel.setAttribute('aria-hidden', hidden)
 renderCart()
 })
-document.getElementById('checkoutBtn').addEventListener('click', checkoutWhats)
-document.getElementById('closeModal').addEventListener('click', ()=>document.getElementById('modal').classList.add('hidden'))
-document.getElementById('search').addEventListener('input', (e)=>{
+
+
+// botones del panel
+document.getElementById('clearCart').addEventListener('click', ()=>{ if(confirm('¿Limpiar carrito?')) clearCart() })
+document.getElementById('checkoutBtn').addEventListener('click', checkoutWhatsApp)
+document.getElementById('whatsappQuick').addEventListener('click', ()=>window.open(`https://wa.me/${WHATSAPP_NUMBER}`,'_blank'))
+
+
+// búsqueda y filtrado
+document.getElementById('search').addEventListener('input', e=>{
 const q = e.target.value.toLowerCase()
-const filtered = state.products.filter(p=> p.name.toLowerCase().includes(q) || (p.features||[]).join(' ').toLowerCase().includes(q) )
+const filtered = state.products.filter(p=> p.name.toLowerCase().includes(q) || (p.features||[]).join(' ').toLowerCase().includes(q))
 renderProducts(filtered)
 })
-document.getElementById('categoryFilter').addEventListener('change',(e)=>{
-const v = e.target.value
-const filtered = v==='all' ? state.products : state.products.filter(p=>p.category===v)
-renderProducts(filtered)
-})
-// WhatsApp quick button
-document.getElementById('whatsappQuick').addEventListener('click', (e)=>{
-e.preventDefault(); const phone='5215540000000'; window.open(`https://wa.me/${phone}`,'_blank')
-})
-}
 
 
-// Rellena select de categorías
-function populateCategories(list){
+function populateCategories(){
 const sel = document.getElementById('categoryFilter')
-const cats = [...new Set(list.map(p=>p.category))]
-cats.forEach(c=>{
-const opt = document.createElement('option'); opt.value=c; opt.textContent=c; sel.appendChild(opt)
+const cats = [...new Set(state.products.map(p=>p.category))]
+cats.forEach(c=>{ const opt = document.createElement('option'); opt.value=c; opt.textContent=c; sel.appendChild(opt) })
+sel.addEventListener('change', ()=>{
+const v = sel.value
+renderProducts(v==='all' ? state.products : state.products.filter(p=>p.category===v))
 })
 }
 
 
-// Carga inicial
+// inicialización
 loadCart()
-initUI()
 loadProducts()

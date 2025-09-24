@@ -1,67 +1,133 @@
-/* ---------------------- app.js ---------------------- */
-// --- WHATSAPP: generar mensaje y abrir chat ---
-function checkoutWhatsApp(){
-const lines = []
-let total = 0
-Object.values(state.cart).forEach(ci => {
-lines.push(`${ci.qty} x ${ci.product.name} - $${fmt(ci.product.price)} = $${fmt(ci.product.price*ci.qty)}`)
-total += ci.product.price * ci.qty
-})
-if(lines.length===0){ alert('El carrito está vacío'); return }
-const msg = `Hola, deseo realizar el siguiente pedido:%0A%0A${encodeURIComponent(lines.join('%0A'))}%0A%0ATotal: $${fmt(total)}`
-const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`
-window.open(url,'_blank')
+let productos = [];
+let carrito = [];
+const telefonoTienda = "525598765432"; // <-- cámbialo por tu número
+
+// Cargar productos desde productos.json
+fetch("productos.json")
+  .then(response => response.json())
+  .then(data => {
+    productos = data;
+    renderizarProductos(productos);
+    generarCategorias();
+  })
+  .catch(error => console.error("Error al cargar productos:", error));
+
+// Renderizar productos
+function renderizarProductos(lista) {
+  const contenedor = document.getElementById("productos");
+  contenedor.innerHTML = "";
+
+  lista.forEach(prod => {
+    const item = document.createElement("div");
+    item.classList.add("producto");
+
+    item.innerHTML = `
+      <img src="${prod.imagen}" alt="${prod.nombre}" />
+      <h3>${prod.nombre}</h3>
+      <p class="categoria">${prod.categoria}</p>
+      <p class="precio">$${prod.precio} MXN</p>
+      <button onclick="agregarAlCarrito(${prod.id})">Agregar al carrito</button>
+    `;
+    contenedor.appendChild(item);
+  });
 }
 
+// Generar categorías dinámicas
+function generarCategorias() {
+  const contenedor = document.getElementById("categorias");
+  contenedor.innerHTML = "";
 
-// --- eventos UI delegados ---
-document.addEventListener('click', e=>{
-const el = e.target
-const action = el.dataset.action
-const id = el.dataset.id
-if(!action) return
-if(action==='add') addToCart(id,1)
-if(action==='remove') removeFromCart(id)
-if(action==='inc') setQty(id, (state.cart[id]?.qty||0)+1)
-if(action==='dec') setQty(id, (state.cart[id]?.qty||1)-1)
-})
+  const categorias = ["Todos", ...new Set(productos.map(p => p.categoria))];
 
-
-// abrir/ocultar carrito
-document.getElementById('openCart').addEventListener('click', ()=>{
-const panel = document.getElementById('cartPanel')
-panel.classList.toggle('hidden')
-const hidden = panel.classList.contains('hidden')
-panel.setAttribute('aria-hidden', hidden)
-renderCart()
-})
-
-
-// botones del panel
-document.getElementById('clearCart').addEventListener('click', ()=>{ if(confirm('¿Limpiar carrito?')) clearCart() })
-document.getElementById('checkoutBtn').addEventListener('click', checkoutWhatsApp)
-document.getElementById('whatsappQuick').addEventListener('click', ()=>window.open(`https://wa.me/${WHATSAPP_NUMBER}`,'_blank'))
-
-
-// búsqueda y filtrado
-document.getElementById('search').addEventListener('input', e=>{
-const q = e.target.value.toLowerCase()
-const filtered = state.products.filter(p=> p.name.toLowerCase().includes(q) || (p.features||[]).join(' ').toLowerCase().includes(q))
-renderProducts(filtered)
-})
-
-
-function populateCategories(){
-const sel = document.getElementById('categoryFilter')
-const cats = [...new Set(state.products.map(p=>p.category))]
-cats.forEach(c=>{ const opt = document.createElement('option'); opt.value=c; opt.textContent=c; sel.appendChild(opt) })
-sel.addEventListener('change', ()=>{
-const v = sel.value
-renderProducts(v==='all' ? state.products : state.products.filter(p=>p.category===v))
-})
+  categorias.forEach(cat => {
+    const btn = document.createElement("button");
+    btn.innerText = cat;
+    btn.onclick = () => filtrarCategoria(cat);
+    contenedor.appendChild(btn);
+  });
 }
 
+// Agregar al carrito
+function agregarAlCarrito(id) {
+  const producto = productos.find(p => p.id === id);
+  const existente = carrito.find(item => item.id === id);
 
-// inicialización
-loadCart()
-loadProducts()
+  if (existente) {
+    existente.cantidad++;
+  } else {
+    carrito.push({ ...producto, cantidad: 1 });
+  }
+  renderizarCarrito();
+}
+
+// Renderizar carrito
+function renderizarCarrito() {
+  const contenedor = document.getElementById("carrito-items");
+  const totalEl = document.getElementById("total");
+  contenedor.innerHTML = "";
+
+  let total = 0;
+
+  carrito.forEach(item => {
+    total += item.precio * item.cantidad;
+    const div = document.createElement("div");
+    div.classList.add("carrito-item");
+
+    div.innerHTML = `
+      <span>${item.nombre} x${item.cantidad}</span>
+      <span>$${item.precio * item.cantidad}</span>
+      <button onclick="eliminarDelCarrito(${item.id})">❌</button>
+    `;
+    contenedor.appendChild(div);
+  });
+
+  totalEl.innerText = `Total: $${total} MXN`;
+}
+
+// Eliminar un producto del carrito
+function eliminarDelCarrito(id) {
+  carrito = carrito.filter(item => item.id !== id);
+  renderizarCarrito();
+}
+
+// Vaciar carrito
+function vaciarCarrito() {
+  carrito = [];
+  renderizarCarrito();
+}
+
+// Enviar pedido por WhatsApp
+function enviarPedido() {
+  if (carrito.length === 0) {
+    alert("El carrito está vacío.");
+    return;
+  }
+
+  let mensaje = "¡Hola! Me interesa comprar:%0A";
+  carrito.forEach(item => {
+    mensaje += `- ${item.nombre} x${item.cantidad} = $${item.precio * item.cantidad}%0A`;
+  });
+
+  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
+  mensaje += `%0ATotal: $${total} MXN`;
+
+  const url = `https://wa.me/${telefonoTienda}?text=${mensaje}`;
+  window.open(url, "_blank");
+}
+
+// Filtrar por categoría
+function filtrarCategoria(cat) {
+  if (cat === "Todos") {
+    renderizarProductos(productos);
+  } else {
+    const filtrados = productos.filter(p => p.categoria === cat);
+    renderizarProductos(filtrados);
+  }
+}
+
+// Buscar productos
+function buscarProductos() {
+  const texto = document.getElementById("buscador").value.toLowerCase();
+  const filtrados = productos.filter(p => p.nombre.toLowerCase().includes(texto));
+  renderizarProductos(filtrados);
+}

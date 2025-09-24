@@ -1,34 +1,44 @@
 [
-{
-"id": "moto-001",
-"category": "Motocicletas",
-"name": "Raptor 500",
-"price": 12999.99,
-"images": ["img/vento1.jpg"],
-"features": ["Motor 500cc","ABS","Tanque 15L"]
-},
-{
-"id": "moto-002",
-"category": "Motocicletas",
-"name": "Street X200",
-"price": 8999.00,
-"images": ["img/zontes1.jpg"],
-"features": ["200cc","Iluminación LED","Económica"]
-},
-{
-"id": "refa-001",
-"category": "Refacciones",
-"name": "Filtro de aire KX",
-"price": 29.99,
-"images": ["img/refacciones1.jpg"],
-"features": ["Compatible con modelos 2018-2024","Fácil instalación"]
-},
-{
-"id": "refa-002",
-"category": "Refacciones",
-"name": "Juego de pastillas",
-"price": 49.99,
-"images": ["img/accesorios1.jpg"],
-"features": ["Alta fricción","Durabilidad 40k km"]
-}
+  {
+    "id": 1,
+    "nombre": "Motocicleta Deportiva 250cc",
+    "categoria": "Motocicletas",
+    "precio": 55000,
+    "imagen": "img/vento1.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Motocicleta Doble Propósito 150cc",
+    "categoria": "Motocicletas",
+    "precio": 42000,
+    "imagen": "img/zontes1.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Casco Integral Negro",
+    "categoria": "Accesorios",
+    "precio": 1800,
+    "imagen": "img/casco.png"
+  },
+  {
+    "id": 4,
+    "nombre": "Guantes de Piel",
+    "categoria": "Accesorios",
+    "precio": 600,
+    "imagen": "img/guantes.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Kit Pastillas de Freno",
+    "categoria": "Refacciones",
+    "precio": 750,
+    "imagen": "img/frenos.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Llanta Trasera 120/80 R17",
+    "categoria": "Refacciones",
+    "precio": 2200,
+    "imagen": "img/llanta.png"
+  }
 ]

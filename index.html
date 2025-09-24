@@ -1,62 +1,62 @@
+<!DOCTYPE html>
 <html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Virtual - Motocicletas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <div class="logo">
+      <img src="img/logoM.png" alt="Logo Motocicletas">
+      <marquee><h1>Motos y Refacciones MX</h1></marquee>
+    </div>
+    <div class="contacto">
+      <p>📞 <span id="telefono">55 9876 5432</span></p>
+      <button onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+    </div>
+  </header>
 
-<link rel="stylesheet" href="styles.css">
-<script defer src="app.js"></script>
+  <!-- Contenedor carrusel + carrito -->
+<section class="contenedor-carrusel">
+  <div class="carrusel">
+    <div class="carrusel-inner">
+      <div class="carrusel-item active"><img src="img/banner1.jpg" alt="Promoción 1"></div>
+      <div class="carrusel-item"><img src="img/banner2.jpg" alt="Promoción 2"></div>
+      <div class="carrusel-item"><img src="img/banner3.jpg" alt="Promoción 3"></div>
+    </div>
+  </div>
 
-<header class="site-header">
-<div class="brand">
-<div class="logo">🏍️</div>
-<div>
-<h1>Tienda Motos & Refacciones</h1>
-<p class="tag">Gris • Negro • Plateado</p>
-</div>
-</div>
-<div class="actions">
-<button id="whatsappQuick" class="btn-silver">Enviar WhatsApp</button>
-</div>
-</header>
+  <!-- Filtros -->
+  <section class="filtros">
+    <input type="text" id="buscador" placeholder="Buscar productos..." onkeyup="buscarProductos()">
+    <div id="categorias"></div>
+  </section>
 
+  <!-- Productos -->
+  <main id="productos"></main>
 
-<!-- CARRUSEL -->
-<section class="carousel-wrap">
-<button class="carousel-btn prev" aria-label="Anterior">‹</button>
-<div class="carousel-viewport">
-<div class="carousel" id="carousel"></div>
-</div>
-<button class="carousel-btn next" aria-label="Siguiente">›</button>
+  <!-- Carrito -->
+  <aside id="carrito">
+    <h2>Carrito de compras</h2>
+    <div id="carrito-items"></div>
+    <p id="total">Total: $0 MXN</p>
+    <button onclick="vaciarCarrito()">Vaciar carrito</button>
+    <button onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+  </aside>
 </section>
 
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Tienda Virtual - Motocicletas</p>
+  </footer>
 
-<!-- CONTENIDO PRINCIPAL -->
-<main class="container">
-<section class="controls">
-<input id="search" placeholder="Buscar modelo o refacción..." />
-<select id="categoryFilter"><option value="all">Todas</option></select>
-</section>
-
-
-<section id="productGrid" class="product-grid" aria-live="polite"></section>
-</main>
-
-
-<!-- CARRITO FLOTANTE -->
-<div class="cart-float" id="cartFloat">
-<button id="openCart" class="cart-toggle">🛒 <span id="cartCount">0</span></button>
-<aside id="cartPanel" class="cart-panel hidden" aria-hidden="true">
-<header class="cart-header">
-<h3>Carrito</h3>
-<button id="clearCart" class="btn-clear">Limpiar</button>
-</header>
-<div id="cartItems" class="cart-items"></div>
-<div class="cart-total">Total: $<span id="cartTotal">0.00</span></div>
-<div class="cart-actions">
-<button id="checkoutBtn" class="btn-silver">Enviar pedido por WhatsApp</button>
-</div>
-</aside>
-</div>
-
-
-<footer class="site-footer">© 2025 Tienda Motos & Refacciones</footer>
-
+  <script src="app.js"></script>
 </body>
 </html>
+
+
+<!-- 🏍️ logomoto
+-->

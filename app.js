@@ -3,7 +3,7 @@ let carrito = [];
 const telefonoTienda = "525598765432"; // <-- cámbialo por tu número
 
 // Cargar productos desde productos.json
-fetch("productos.json")
+fetch("products.json")
   .then(response => response.json())
   .then(data => {
     productos = data;

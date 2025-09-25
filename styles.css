@@ -13,8 +13,7 @@ body {
 
 /* Encabezado */
 header {
- /* background: linear-gradient(90deg, #000, #1a1a40, #004080, #aaa);*/
-   background: linear-gradient(to left, #1a1a1a, #333);
+  background: linear-gradient(90deg, #000, #1a1a40, #aaa);
   color: gold;
   padding: 15px 25px;
   display: flex;

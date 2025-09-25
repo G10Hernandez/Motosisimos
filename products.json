@@ -1,44 +1,44 @@
 [
   {
     "id": 1,
-    "nombre": "Motocicleta Deportiva 250cc",
-    "categoria": "Motocicletas",
-    "precio": 55000,
-    "imagen": "img/vento1.jpg"
+    "nombre": "Moto Italika 150",
+    "categoria": "Motos",
+    "precio": 25000,
+    "imagen": "img/moto1.jpg"
   },
   {
     "id": 2,
-    "nombre": "Motocicleta Doble Propósito 150cc",
-    "categoria": "Motocicletas",
-    "precio": 42000,
-    "imagen": "img/zontes1.jpg"
+    "nombre": "Moto Honda 250",
+    "categoria": "Motos",
+    "precio": 48000,
+    "imagen": "img/moto2.jpg"
   },
   {
     "id": 3,
-    "nombre": "Casco Integral Negro",
+    "nombre": "Cascos Racing",
     "categoria": "Accesorios",
     "precio": 1800,
-    "imagen": "img/casco.png"
+    "imagen": "img/casco.jpg"
   },
   {
     "id": 4,
-    "nombre": "Guantes de Piel",
+    "nombre": "Guantes de piel",
     "categoria": "Accesorios",
-    "precio": 600,
+    "precio": 900,
     "imagen": "img/guantes.jpg"
   },
   {
     "id": 5,
-    "nombre": "Kit Pastillas de Freno",
+    "nombre": "Aceite para motor",
     "categoria": "Refacciones",
-    "precio": 750,
-    "imagen": "img/frenos.jpg"
+    "precio": 350,
+    "imagen": "img/aceite.jpg"
   },
   {
     "id": 6,
-    "nombre": "Llanta Trasera 120/80 R17",
+    "nombre": "Llantas deportivas",
     "categoria": "Refacciones",
     "precio": 2200,
-    "imagen": "img/llanta.png"
+    "imagen": "img/llantas.jpg"
   }
 ]

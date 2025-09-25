@@ -1,6 +1,6 @@
 let productos = [];
 let carrito = [];
-const telefonoTienda = "525598765432"; // <-- cámbialo por tu número
+const telefonoMotos = "525512345678"; // <-- cambia al número real
 
 // Cargar productos desde productos.json
 fetch("products.json")
@@ -9,6 +9,7 @@ fetch("products.json")
     productos = data;
     renderizarProductos(productos);
     generarCategorias();
+    iniciarCarrusel();
   })
   .catch(error => console.error("Error al cargar productos:", error));
 
@@ -103,7 +104,7 @@ function enviarPedido() {
     return;
   }
 
-  let mensaje = "¡Hola! Me interesa comprar:%0A";
+  let mensaje = "¡Hola! Me gustaría hacer un pedido:%0A";
   carrito.forEach(item => {
     mensaje += `- ${item.nombre} x${item.cantidad} = $${item.precio * item.cantidad}%0A`;
   });
@@ -111,7 +112,7 @@ function enviarPedido() {
   const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0);
   mensaje += `%0ATotal: $${total} MXN`;
 
-  const url = `https://wa.me/${telefonoTienda}?text=${mensaje}`;
+  const url = `https://wa.me/${telefonoMotos}?text=${mensaje}`;
   window.open(url, "_blank");
 }
 
@@ -130,4 +131,16 @@ function buscarProductos() {
   const texto = document.getElementById("buscador").value.toLowerCase();
   const filtrados = productos.filter(p => p.nombre.toLowerCase().includes(texto));
   renderizarProductos(filtrados);
+}
+
+// Carrusel automático con fade
+function iniciarCarrusel() {
+  const items = document.querySelectorAll(".carrusel-item");
+  let index = 0;
+
+  setInterval(() => {
+    items[index].classList.remove("active");
+    index = (index + 1) % items.length;
+    items[index].classList.add("active");
+  }, 4000);
 }

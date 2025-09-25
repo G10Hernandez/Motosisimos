@@ -7,19 +7,19 @@
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0d0d0d, #1c1c1c);
+  background: linear-gradient(to right, #1a1a1a, #333);
   color: #f0f0f0;
 }
 
 /* Encabezado */
 header {
-  background: linear-gradient(90deg, #001f3f, #0074d9, #7fdbff);
-  color: white;
-  padding: 15px;
+  background: linear-gradient(90deg, #000, #1a1a40, #004080, #aaa);
+  color: gold;
+  padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 4px solid #daa520;
+  border-bottom: 3px solid #444;
 }
 
 .logo {
@@ -32,46 +32,48 @@ header {
   height: 60px;
 }
 
+.contacto {
+  text-align: right;
+}
+
 .contacto button {
-  background: linear-gradient(90deg, #daa520, #ffd700);
-  color: black;
+  background: linear-gradient(45deg, #004080, #000);
+  color: gold;
   border: none;
   padding: 10px 15px;
-  margin-top: 5px;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
+}
+
+.contacto button:hover {
+  background: gold;
+  color: black;
 }
 
 /* Carrusel */
 .carrusel {
   width: 100%;
-  overflow: hidden;
+  height: 250px;
   position: relative;
-  border-radius: 12px;
-}
-
-.carrusel-inner {
-  display: flex;
-  animation: slide 15s infinite;
+  overflow: hidden;
 }
 
 .carrusel-item {
-  min-width: 100%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.carrusel-item.active {
+  opacity: 1;
 }
 
 .carrusel img {
   width: 100%;
-  height: 300px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
-}
-
-@keyframes slide {
-  0% { transform: translateX(0); }
-  33% { transform: translateX(-100%); }
-  66% { transform: translateX(-200%); }
-  100% { transform: translateX(0); }
 }
 
 /* Filtros */
@@ -84,25 +86,22 @@ header {
   width: 60%;
   padding: 8px;
   border-radius: 10px;
-  border: 1px solid #444;
+  border: 1px solid #ccc;
   margin-bottom: 10px;
-  background: #111;
-  color: #fff;
 }
 
 #categorias button {
-  background: linear-gradient(90deg, #0074d9, #7fdbff);
+  background: linear-gradient(45deg, silver, #004080);
   border: none;
   margin: 5px;
   padding: 8px 12px;
   border-radius: 15px;
   cursor: pointer;
-  color: #fff;
-  font-weight: bold;
+  color: black;
 }
 
 #categorias button:hover {
-  background: linear-gradient(90deg, #daa520, #ffd700);
+  background: gold;
   color: black;
 }
 
@@ -115,17 +114,12 @@ header {
 }
 
 .producto {
-  background: linear-gradient(180deg, #1a1a1a, #2e2e2e);
-  border: 1px solid #444;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #666;
   border-radius: 15px;
   padding: 15px;
   text-align: center;
   box-shadow: 0 3px 5px rgba(0,0,0,0.5);
-  transition: transform 0.3s;
-}
-
-.producto:hover {
-  transform: translateY(-5px);
 }
 
 .producto img {
@@ -135,57 +129,47 @@ header {
   object-fit: cover;
 }
 
-.producto h3 {
-  margin: 10px 0;
-  color: #7fdbff;
-}
-
-.producto .precio {
-  color: #daa520;
-  font-weight: bold;
-}
-
 .producto button {
-  background: linear-gradient(90deg, #0074d9, #7fdbff);
-  color: white;
+  background: linear-gradient(45deg, #004080, black);
+  color: gold;
   border: none;
   padding: 8px 12px;
   border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
-  font-weight: bold;
 }
 
 .producto button:hover {
-  background: linear-gradient(90deg, #daa520, #ffd700);
+  background: gold;
   color: black;
 }
 
-/* Carrito */
+/* Carrito flotante */
 #carrito {
-  background: #111;
-  border: 2px solid #0074d9;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid gold;
   padding: 15px;
-  position: absolute;
-  top: 180px;
+  position: fixed;
+  bottom: 20px;
   right: 20px;
-  width: 260px;
-  height: 300px;
+  width: 280px;
+  max-height: 400px;
   overflow-y: auto;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  color: white;
 }
 
 #carrito h2 {
   margin-bottom: 10px;
-  color: #ffd700;
+  text-align: center;
+  color: gold;
 }
 
 .carrito-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 14px;
 }
 
 .carrito-item button {
@@ -201,7 +185,6 @@ header {
 footer {
   text-align: center;
   padding: 15px;
-  background: #001f3f;
-  border-top: 3px solid #daa520;
-  color: white;
+  background: #111;
+  border-top: 2px solid gold;
 }

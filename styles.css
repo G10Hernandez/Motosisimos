@@ -13,7 +13,7 @@ body {
 
 /* Encabezado */
 header {
-  background: linear-gradient(90deg, #000, #1a1a40, #aaa);
+  background: linear-gradient(90deg, #000, #1a1a40, #004080, #aaa);
   color: gold;
   padding: 15px 25px;
   display: flex;
@@ -72,7 +72,7 @@ header {
 
 .carrusel img {
   width: 100%;
-  height: 100%;
+  height: 90%;
   object-fit: cover;
 }
 

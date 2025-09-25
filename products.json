@@ -4,14 +4,14 @@
     "nombre": "Moto Italika 150",
     "categoria": "Motos",
     "precio": 25000,
-    "imagen": "img/vento1.jpg"
+    "imagen": "img/moto1.jpg"
   },
   {
     "id": 2,
     "nombre": "Moto Honda 250",
     "categoria": "Motos",
     "precio": 48000,
-    "imagen": "img/zontes1.jpg"
+    "imagen": "img/moto2.jpg"
   },
   {
     "id": 3,

@@ -4,21 +4,21 @@
     "nombre": "Moto Italika 150",
     "categoria": "Motos",
     "precio": 25000,
-    "imagen": "img/moto1.jpg"
+    "imagen": "img/vento1.jpg"
   },
   {
     "id": 2,
     "nombre": "Moto Honda 250",
     "categoria": "Motos",
     "precio": 48000,
-    "imagen": "img/moto2.jpg"
+    "imagen": "img/zontes1.jpg"
   },
   {
     "id": 3,
     "nombre": "Cascos Racing",
     "categoria": "Accesorios",
     "precio": 1800,
-    "imagen": "img/casco.jpg"
+    "imagen": "img/casco.png"
   },
   {
     "id": 4,
@@ -39,6 +39,6 @@
     "nombre": "Llantas deportivas",
     "categoria": "Refacciones",
     "precio": 2200,
-    "imagen": "img/llantas.jpg"
+    "imagen": "img/llanta.png"
   }
 ]

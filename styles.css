@@ -146,37 +146,59 @@ header {
   color: black;
 }
 
-/* Carrito dentro de la página, no fijo */
-.contenedor-carrito {
-  display: flex;
-  justify-content: flex-end;
-  padding: 20px;
-}
-
+/* Carrito flotante en esquina inferior derecha */
 #carrito {
-  background: rgba(0, 0, 0, 0.85);
-  border: 2px solid gold;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(20, 20, 20, 0.92);
+  border: 2px solid silver;
   padding: 15px;
   width: 320px;
+  max-height: 400px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.6);
   color: white;
-  position: relative; /* ya no fixed */
+  overflow-y: auto;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
 }
 
+/* Scroll interno elegante */
+#carrito::-webkit-scrollbar {
+  width: 8px;
+}
+#carrito::-webkit-scrollbar-thumb {
+  background: silver;
+  border-radius: 4px;
+}
+#carrito::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Título */
 #carrito h2 {
   margin-bottom: 10px;
   text-align: center;
   color: gold;
 }
 
-.carrito-item button {
-  background: red;
-  color: white;
+/* Botones dentro del carrito */
+#carrito button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: linear-gradient(45deg, silver, gray);
+  color: black;
+  font-weight: bold;
   border: none;
-  border-radius: 50%;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 3px 7px;
+  transition: 0.3s;
+}
+#carrito button:hover {
+  background: linear-gradient(45deg, gold, silver);
+  color: black;
 }
 
 /* Footer */
